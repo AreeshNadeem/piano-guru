@@ -1,0 +1,242 @@
+{
+    "twinkle_twinkle": {
+        "name": "Twinkle Twinkle",
+        "notes": "123456654321",
+        "source": "built_in"
+    },
+    "mary_had_a_little_lamb": {
+        "name": "Mary Had a Little Lamb",
+        "notes": "32123333222455",
+        "source": "built_in"
+    },
+    "jingle_bells": {
+        "name": "Jingle Bells",
+        "notes": "333333353123",
+        "source": "built_in"
+    },
+    "ode_to_joy": {
+        "name": "Ode to Joy",
+        "notes": "334554321123",
+        "source": "built_in"
+    },
+    "row_row_row": {
+        "name": "Row Row Row Your Boat",
+        "notes": "1112343321",
+        "source": "built_in"
+    },
+    "happy_birthday": {
+        "name": "Happy Birthday",
+        "notes": "112143211654",
+        "source": "built_in"
+    },
+    "london_bridge": {
+        "name": "London Bridge",
+        "notes": "321233345",
+        "source": "built_in"
+    },
+    "old_macdonald": {
+        "name": "Old MacDonald",
+        "notes": "1112333454321",
+        "source": "built_in"
+    },
+    "are_you_sleeping": {
+        "name": "Are You Sleeping",
+        "notes": "123123345345",
+        "source": "built_in"
+    },
+    "scale_sprint": {
+        "name": "Scale Sprint",
+        "notes": "123456123456654321",
+        "source": "built_in"
+    },
+    "leap_challenge": {
+        "name": "Leap Challenge",
+        "notes": "1616162345654321",
+        "source": "built_in"
+    },
+    "gentle_steps": {
+        "name": "Gentle Steps",
+        "notes": "1122332211",
+        "source": "built_in"
+    },
+    "sunny_steps": {
+        "name": "Sunny Steps",
+        "notes": "123456543",
+        "source": "built_in"
+    },
+    "jolly_skip": {
+        "name": "Jolly Skip",
+        "notes": "135135246",
+        "source": "built_in"
+    },
+    "cheerful_bounce": {
+        "name": "Cheerful Bounce",
+        "notes": "112233445566",
+        "source": "built_in"
+    },
+    "morning_rise": {
+        "name": "Morning Rise",
+        "notes": "234512345",
+        "source": "built_in"
+    },
+    "playful_hop": {
+        "name": "Playful Hop",
+        "notes": "132435465",
+        "source": "built_in"
+    },
+    "falling_leaves": {
+        "name": "Falling Leaves",
+        "notes": "654321123",
+        "source": "built_in"
+    },
+    "goodbye_waltz": {
+        "name": "Goodbye Waltz",
+        "notes": "665544332211",
+        "source": "built_in"
+    },
+    "rainy_window": {
+        "name": "Rainy Window",
+        "notes": "543216543",
+        "source": "built_in"
+    },
+    "empty_room": {
+        "name": "Empty Room",
+        "notes": "654654321",
+        "source": "built_in"
+    },
+    "marys_lament": {
+        "name": "Mary's Lament",
+        "notes": "32123333222",
+        "source": "built_in"
+    },
+    "lonely_echo": {
+        "name": "Lonely Echo",
+        "notes": "6655443322",
+        "source": "built_in"
+    },
+    "thunder_strike": {
+        "name": "Thunder Strike",
+        "notes": "161616161",
+        "source": "built_in"
+    },
+    "storm_march": {
+        "name": "Storm March",
+        "notes": "116611661166",
+        "source": "built_in"
+    },
+    "rage_run": {
+        "name": "Rage Run",
+        "notes": "162534162534",
+        "source": "built_in"
+    },
+    "battle_cry": {
+        "name": "Battle Cry",
+        "notes": "611611166",
+        "source": "built_in"
+    },
+    "jingle_fury": {
+        "name": "Jingle Fury",
+        "notes": "333333353123",
+        "source": "built_in"
+    },
+    "clash_of_keys": {
+        "name": "Clash of Keys",
+        "notes": "165165612",
+        "source": "built_in"
+    },
+    "sudden_twist": {
+        "name": "Sudden Twist",
+        "notes": "163625142",
+        "source": "built_in"
+    },
+    "pop": {
+        "name": "Pop!",
+        "notes": "152634152",
+        "source": "built_in"
+    },
+    "magic_trick": {
+        "name": "Magic Trick",
+        "notes": "612345165",
+        "source": "built_in"
+    },
+    "zigzag": {
+        "name": "Zigzag",
+        "notes": "162536142",
+        "source": "built_in"
+    },
+    "unexpected_turn": {
+        "name": "Unexpected Turn",
+        "notes": "135624135",
+        "source": "built_in"
+    },
+    "the_reveal": {
+        "name": "The Reveal",
+        "notes": "246135624",
+        "source": "built_in"
+    },
+    "breezy_afternoon": {
+        "name": "Breezy Afternoon",
+        "notes": "122232334",
+        "source": "generated"
+    },
+    "skipping_stones": {
+        "name": "Skipping Stones",
+        "notes": "13454554655",
+        "source": "generated"
+    },
+    "cherry_pop": {
+        "name": "Cherry Pop",
+        "notes": "1134565651213465",
+        "source": "generated"
+    },
+    "bubble_burst": {
+        "name": "Bubble Burst",
+        "notes": "135656565245",
+        "source": "generated"
+    },
+    "rooftop_dance": {
+        "name": "Rooftop Dance",
+        "notes": "123465123",
+        "source": "generated"
+    },
+    "warm_breeze": {
+        "name": "Warm Breeze",
+        "notes": "13566556666",
+        "source": "generated"
+    },
+    "daydream": {
+        "name": "Daydream",
+        "notes": "12212344544565",
+        "source": "generated"
+    },
+    "rainbow_run": {
+        "name": "Rainbow Run",
+        "notes": "123245651",
+        "source": "generated"
+    },
+    "sunshine_stroll": {
+        "name": "Sunshine Stroll",
+        "notes": "13456655565121",
+        "source": "generated"
+    },
+    "lemonade_stand": {
+        "name": "Lemonade Stand",
+        "notes": "11356654666",
+        "source": "generated"
+    },
+    "kite_in_the_wind": {
+        "name": "Kite in the Wind",
+        "notes": "2323234354545",
+        "source": "generated"
+    },
+    "hilltop_jig": {
+        "name": "Hilltop Jig",
+        "notes": "135566651123",
+        "source": "generated"
+    },
+    "golden_hour": {
+        "name": "Golden Hour",
+        "notes": "11351234",
+        "source": "generated"
+    }
+}

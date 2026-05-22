@@ -1,0 +1,1733 @@
+#:kivy 2.3.1
+MyScreenManager:
+    HomeScreen:
+        name: "home"
+    NameScreen:
+        name: "name"
+    ModeSelectionScreen:
+        name: "mode_selection"
+    CasualModeScreen:
+        name: "casual_mode"
+    AnalysisScreen:
+        name: "analysis"
+    BeginnerSongScreen:
+        name: "beginner_song"
+    IntermediateSongScreen:
+        name: "intermediate_song"
+    AIModeSongScreen:
+        name: "AI_song"
+    AIvsSongScreen:
+        name: "ai_vs_song"
+    WaitingScreen:
+        name: "waiting"
+    ResultScreen:
+        name: "result"
+    HowToPlayScreen:
+        name: "howToPlay"
+    CreditsScreen:
+        name: "credits"
+    # ── New screens ───────────────────────────────────────────────────────────
+    PredictModeScreen:
+        name: "predict_mode"
+    PredictResultScreen:
+        name: "predict_result"
+    MelodySearchScreen:
+        name: "melody_search"
+    FacialRecommendationScreen:
+        name: "facial_recommendation"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Reusable style rules
+# ─────────────────────────────────────────────────────────────────────────────
+<PinkButton@Button>:
+    font_name: "MightySouly-lxggD.ttf"
+    font_size: 22
+    size_hint_y: None
+    height: 60
+    background_normal: ""
+    background_color: 1, 0.7, 0.8, 1
+    color: 0, 0, 0, 1
+
+<BlackButton@Button>:
+    font_name: "MightySouly-lxggD.ttf"
+    font_size: 22
+    size_hint_y: None
+    height: 60
+    background_normal: ""
+    background_color: 0, 0, 0, 1
+    color: 1, 1, 1, 1
+
+<PinkCard@BoxLayout>:
+    size_hint_y: None
+    height: 80
+    canvas.before:
+        Color:
+            rgba: 1, 0.7, 0.8, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Piano Guru"
+            font_size: 100
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 300, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Start"
+                on_release: root.start_game()
+
+            PinkButton:
+                text: "Credits"
+                on_release: root.show_credits()
+
+            PinkButton:
+                text: "How To Play"
+                on_release: root.show_how_to_play()
+
+            PinkButton:
+                text: "Quit"
+                on_release: app.stop()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<NameScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Enter Your Name"
+            font_size: 60
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 300, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            TextInput:
+                id: name_input
+                multiline: False
+                hint_text: "Your Name"
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 28
+                size_hint_y: None
+                height: 60
+                background_normal: ""
+                background_color: 1, 0.9, 0.95, 1
+                foreground_color: 0, 0, 0, 1
+                cursor_color: 0, 0, 0, 1
+
+            PinkButton:
+                text: "Continue"
+                on_release: root.submit_name()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<ModeSelectionScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 30]
+        spacing: 0
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Select Mode"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 18
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [80, 20, 80, 20]
+
+                # ── Core modes ────────────────────────────────────────────────
+                Label:
+                    text: "Core Modes"
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 20
+                    color: 0.5, 0.5, 0.5, 1
+                    size_hint_y: None
+                    height: 30
+                    halign: "left"
+                    text_size: self.size
+
+                PinkButton:
+                    text: "🎹  Casual  —  free play"
+                    on_release: root.select_mode('casual')
+
+                PinkButton:
+                    text: "🌱  Beginner  —  guided melodies"
+                    on_release: root.select_mode('beginner')
+
+                PinkButton:
+                    text: "⚡  Speed Mode  —  beat the clock"
+                    on_release: root.select_mode('intermediate')
+
+                PinkButton:
+                    text: "🤖  AI Mode  —  watch then play"
+                    on_release: root.select_mode('AI')
+
+                PinkButton:
+                    text: "🏆  AI vs You  —  race the AI"
+                    on_release: root.select_mode('ai_vs')
+
+                # ── Smart features ────────────────────────────────────────────
+                Label:
+                    text: "Smart Features"
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 20
+                    color: 0.5, 0.5, 0.5, 1
+                    size_hint_y: None
+                    height: 30
+                    halign: "left"
+                    text_size: self.size
+
+                PinkButton:
+                    text: "🎤  Hum a Melody  —  ESP32 mic"
+                    on_release: root.select_mode('humming')
+
+                PinkButton:
+                    text: "😊  Mood Recommend  —  webcam"
+                    on_release: root.select_mode('emotion')
+
+                PinkButton:
+                    text: "🔍  Predict Song  —  play & match"
+                    on_release: root.select_mode('predict')
+
+                PinkButton:
+                    text: "🗂️  Search Melodies  —  find & play"
+                    on_release: root.select_mode('search')
+
+                # ── Stats / back ──────────────────────────────────────────────
+                Label:
+                    text: "Stats"
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 20
+                    color: 0.5, 0.5, 0.5, 1
+                    size_hint_y: None
+                    height: 30
+                    halign: "left"
+                    text_size: self.size
+
+                PinkButton:
+                    text: "📊  Analyse My Performance"
+                    on_release: root.select_mode('analysis')
+
+                BlackButton:
+                    text: "< Back to Main Menu"
+                    on_release: root.go_back()
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<AnalysisScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Performance Analysis"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 20
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [40, 10]
+
+                PinkCard:
+                    Label:
+                        text: "🏆 Best Song:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: root.best_song if root.best_song else "N/A"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "📉 Worst Song:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: root.worst_song if root.worst_song else "N/A"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🎯 Average Accuracy:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: f"{root.average_accuracy:.1f}%" if root.average_accuracy else "0.0%"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "⚠️ Average Mistakes:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: f"{root.average_mistakes:.1f}" if root.average_mistakes else "0"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🎵 Total Songs:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: str(root.total_songs) if root.total_songs else "0"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "✅ Correct Notes:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: str(root.total_correct) if root.total_correct else "0"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "❌ Total Mistakes:"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                    Label:
+                        text: str(root.total_mistakes) if root.total_mistakes else "0"
+                        font_size: 24
+                        font_name: "MightySouly-lxggD.ttf"
+                        color: 0, 0, 0, 1
+                        size_hint_x: 0.5
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 20
+            size_hint: None, None
+            size: 500, 60
+            pos_hint: {"center_x": 0.5}
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+            PinkButton:
+                text: "Reset Stats"
+                on_release: root.reset_stats()
+
+        Widget:
+            size_hint_y: 0.2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<CasualModeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Casual Mode"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 40
+            spacing: 30
+            size_hint: None, None
+            size: 600, 350
+            pos_hint: {"center_x": 0.5}
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.7, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Free Play Mode"
+                font_size: 40
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 60
+
+            Label:
+                text: root.status_text
+                font_size: 28
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 60
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+            Label:
+                text: "No scoring, no mistakes tracked.\nJust have fun and play freely! 🎵"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 80
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+        Widget:
+            size_hint_y: 1
+
+        BlackButton:
+            text: "< Back to Menu"
+            size_hint: None, None
+            size: 300, 60
+            pos_hint: {"center_x": 0.5}
+            on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 0.2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<BeginnerSongScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Beginner Mode"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        Label:
+            text: "Select a Song"
+            font_size: 40
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 400, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Twinkle Twinkle"
+                on_release: root.select_song('twinkle')
+
+            PinkButton:
+                text: "Mary Had a Little Lamb"
+                on_release: root.select_song('mary')
+
+            PinkButton:
+                text: "Jingle Bells"
+                on_release: root.select_song('jingle')
+
+            PinkButton:
+                text: "🎲  Random"
+                on_release: root.select_song('random')
+
+            PinkButton:
+                text: "🗂️  Search Saved Melodies"
+                on_release: root.manager.current = 'melody_search'
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<IntermediateSongScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Speed Mode"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        Label:
+            text: "Select a Song (Time Limited)"
+            font_size: 30
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 400, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Twinkle Twinkle"
+                on_release: root.select_song('twinkle')
+
+            PinkButton:
+                text: "Mary Had a Little Lamb"
+                on_release: root.select_song('mary')
+
+            PinkButton:
+                text: "Jingle Bells"
+                on_release: root.select_song('jingle')
+
+            PinkButton:
+                text: "🎲  Random"
+                on_release: root.select_song('random')
+
+            PinkButton:
+                text: "🗂️  Search Saved Melodies"
+                on_release: root.manager.current = 'melody_search'
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<AIModeSongScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "AI Mode"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        Label:
+            text: "AI plays first, then you"
+            font_size: 30
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 400, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Twinkle Twinkle"
+                on_release: root.select_song('twinkle')
+
+            PinkButton:
+                text: "Mary Had a Little Lamb"
+                on_release: root.select_song('mary')
+
+            PinkButton:
+                text: "Jingle Bells"
+                on_release: root.select_song('jingle')
+
+            PinkButton:
+                text: "🎲  Random"
+                on_release: root.select_song('random')
+
+            PinkButton:
+                text: "🗂️  Search Saved Melodies"
+                on_release: root.manager.current = 'melody_search'
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<AIvsSongScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "AI vs You"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        Label:
+            text: "Compete with AI"
+            font_size: 30
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 400, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Twinkle Twinkle"
+                on_release: root.select_song('twinkle')
+
+            PinkButton:
+                text: "Mary Had a Little Lamb"
+                on_release: root.select_song('mary')
+
+            PinkButton:
+                text: "Jingle Bells"
+                on_release: root.select_song('jingle')
+
+            PinkButton:
+                text: "🎲  Random"
+                on_release: root.select_song('random')
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<WaitingScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Playing..."
+            font_size: 100
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 500, 300
+            pos_hint: {"center_x": 0.5}
+            spacing: 20
+            padding: 20
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.7, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: root.melody_text
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 28
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+            Label:
+                text: root.status_text
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 22
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+            Label:
+                text: root.timer_text if root.show_timer else ""
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 26
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+        BlackButton:
+            text: "Cancel"
+            size_hint: None, None
+            size: 300, 60
+            pos_hint: {"center_x": 0.5}
+            on_release: root.cancel()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<ResultScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: root.result_text
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 25
+            size_hint: None, None
+            size: 500, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            # AI vs comparison
+            BoxLayout:
+                size_hint_y: None
+                height: 80 if root.show_comparison else 0
+                opacity: 1 if root.show_comparison else 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: root.user_time_text
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 80 if root.show_comparison else 0
+                opacity: 1 if root.show_comparison else 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: root.ai_time_text
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 80 if root.show_comparison else 0
+                opacity: 1 if root.show_comparison else 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: root.winner_text
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            # Normal results
+            BoxLayout:
+                size_hint_y: None
+                height: 0 if root.show_comparison else 80
+                opacity: 0 if root.show_comparison else 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: "Correctness: " + str(root.percentage) + "%"
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 0 if root.show_comparison else 80
+                opacity: 0 if root.show_comparison else 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: "Mistakes: " + str(root.errors)
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 80 if root.rating else 0
+                opacity: 1 if root.rating else 0
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.7, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: root.rating
+                    font_name: "MightySouly-lxggD.ttf"
+                    font_size: 28
+                    color: 0, 0, 0, 1
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            PinkButton:
+                text: "Play Again"
+                on_release: root.play_again()
+
+            BlackButton:
+                text: "< Back to Main Menu"
+                on_release: root.go_home()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<HowToPlayScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "How To Play"
+            font_size: 100
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 25
+                size_hint: None, None
+                size: 600, self.minimum_height
+                pos_hint: {"center_x": 0.5}
+                padding: [0, 0, 0, 20]
+
+                PinkCard:
+                    Label:
+                        text: "🌱 Beginner: Play melodies and see your results"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "⚡ Speed Mode: Complete songs within time limit"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🤖 AI Mode: AI plays first, then you follow"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🏆 AI vs You: Compete for fastest time"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🎤 Hum a Melody: Hum into the mic — ESP32 detects your tune and plays it back"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "😊 Mood Recommend: Look at the camera — we pick songs based on your emotion"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🔍 Predict Song: Play freely in casual mode — we guess which melody you played"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                PinkCard:
+                    Label:
+                        text: "🗂️ Search Melodies: Find any saved or generated melody by name and play it"
+                        font_name: "MightySouly-lxggD.ttf"
+                        font_size: 20
+                        color: 0, 0, 0, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+
+                BlackButton:
+                    text: "< Back to Main Menu"
+                    on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 0.1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+<CreditsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Credits"
+            font_size: 100
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 120
+
+        Label:
+            text: "With love, "
+            font_size: 40
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            size_hint: None, None
+            size: 450, self.minimum_height
+            pos_hint: {"center_x": 0.5}
+
+            Label:
+                text: "Developed by:"
+                font_size: 28
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 40
+
+            Label:
+                text: "Safa Ahmad"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                text: "Areesh Nadeem"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                text: "Fizza Hussain"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                text: "Fatima Laraib"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                text: "Huzaifa Rahman"
+                font_size: 24
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Widget:
+                size_hint_y: None
+                height: 20
+
+            Label:
+                text: "Font by Graphic Sauce"
+                font_size: 20
+                font_name: "MightySouly-lxggD.ttf"
+                color: 0.4, 0.4, 0.4, 1
+                size_hint_y: None
+                height: 30
+
+        BlackButton:
+            text: "< Back to Main Menu"
+            size_hint: None, None
+            size: 300, 60
+            pos_hint: {"center_x": 0.5}
+            on_release: root.go_back()
+
+        Widget:
+            size_hint_y: 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  NEW SCREENS
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Melody Search ─────────────────────────────────────────────────────────────
+<MelodySearchScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 20
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "🗂️  Search Melodies"
+            font_size: 70
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        # Search bar row
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 15
+            size_hint: None, None
+            size: 700, 60
+            pos_hint: {"center_x": 0.5}
+
+            TextInput:
+                id: search_input
+                multiline: False
+                hint_text: "Type a melody name..."
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 22
+                background_normal: ""
+                background_color: 1, 0.9, 0.95, 1
+                foreground_color: 0, 0, 0, 1
+                cursor_color: 0, 0, 0, 1
+                size_hint_x: 0.75
+
+            PinkButton:
+                text: "Search"
+                size_hint_x: 0.25
+                on_release: root.do_search()
+
+        # Status label
+        Label:
+            text: root.status_text
+            font_name: "MightySouly-lxggD.ttf"
+            font_size: 20
+            color: 0.4, 0.4, 0.4, 1
+            size_hint_y: None
+            height: 35
+            halign: "center"
+            text_size: self.size
+
+        # Results list
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                id: results_container
+                orientation: 'vertical'
+                spacing: 12
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [60, 5, 60, 10]
+
+        Widget:
+            size_hint_y: 1
+
+        BlackButton:
+            text: "< Back"
+            size_hint: None, None
+            size: 300, 60
+            pos_hint: {"center_x": 0.5}
+            on_release: root.go_back()
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+
+# ── Predict Mode ──────────────────────────────────────────────────────────────
+<PredictModeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "🔍  Predict Song"
+            font_size: 70
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        # Info card
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 30
+            spacing: 15
+            size_hint: None, None
+            size: 600, 220
+            pos_hint: {"center_x": 0.5}
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.7, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: root.status_text
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 22
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                size_hint_y: None
+                height: 60
+
+            Label:
+                text: "Notes captured: " + (root.captured_notes if root.captured_notes else "none yet")
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 20
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                size_hint_y: None
+                height: 50
+
+            Label:
+                text: "🎹  Use the piano keys to play. We'll match your melody."
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 18
+                color: 0.3, 0.3, 0.3, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                size_hint_y: None
+                height: 50
+
+        Widget:
+            size_hint_y: 1
+
+        # Action buttons
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 20
+            size_hint: None, None
+            size: 700, 60
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "▶  Start Recording"
+                on_release: root.start_recording()
+
+            PinkButton:
+                text: "⏹  Stop & Match"
+                on_release: root.stop_recording()
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 20
+            size_hint: None, None
+            size: 700, 60
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "💾  Save as Custom"
+                on_release: root.save_as_custom()
+
+            PinkButton:
+                text: "📚  View Library"
+                on_release: root.show_library_popup()
+
+        BlackButton:
+            text: "< Back"
+            size_hint: None, None
+            size: 300, 60
+            pos_hint: {"center_x": 0.5}
+            on_release: root.go_back()
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+
+# ── Predict Result ────────────────────────────────────────────────────────────
+<PredictResultScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 25
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Best Matches"
+            font_size: 80
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 100
+
+        Label:
+            text: "You played: " + root.played_notes
+            font_name: "MightySouly-lxggD.ttf"
+            font_size: 22
+            color: 0.4, 0.4, 0.4, 1
+            size_hint_y: None
+            height: 40
+            halign: "center"
+            text_size: self.size
+
+        # Match 1
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 5
+            size_hint: None, None
+            size: 600, 110
+            pos_hint: {"center_x": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 0.7, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "🥇  " + root.match1_name
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 26
+                color: 0, 0, 0, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 45
+            Label:
+                text: "Score: " + str(root.match1_score) + "%  |  " + root.match1_source
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 20
+                color: 0.3, 0.3, 0.3, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 35
+
+        # Match 2
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 5
+            size_hint: None, None
+            size: 600, 110
+            pos_hint: {"center_x": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 0.82, 0.88, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "🥈  " + root.match2_name
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 26
+                color: 0, 0, 0, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 45
+            Label:
+                text: "Score: " + str(root.match2_score) + "%  |  " + root.match2_source
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 20
+                color: 0.3, 0.3, 0.3, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 35
+
+        # Match 3
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 5
+            size_hint: None, None
+            size: 600, 110
+            pos_hint: {"center_x": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 0.9, 0.94, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "🥉  " + root.match3_name
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 26
+                color: 0, 0, 0, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 45
+            Label:
+                text: "Score: " + str(root.match3_score) + "%  |  " + root.match3_source
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 20
+                color: 0.3, 0.3, 0.3, 1
+                halign: "center"
+                text_size: self.size
+                size_hint_y: None
+                height: 35
+
+        Widget:
+            size_hint_y: 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 20
+            size_hint: None, None
+            size: 500, 60
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "Try Again"
+                on_release: root.try_again()
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+
+# ── Facial / Emotion Recommendation ──────────────────────────────────────────
+<FacialRecommendationScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 25
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "😊  Mood Recommend"
+            font_size: 65
+            font_name: "MightySouly-lxggD.ttf"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 95
+
+        # Status card
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 25
+            spacing: 10
+            size_hint: None, None
+            size: 620, 150
+            pos_hint: {"center_x": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 0.7, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: root.emotion_text
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 28
+                color: 0, 0, 0, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                size_hint_y: None
+                height: 55
+
+            Label:
+                text: root.status_text
+                font_name: "MightySouly-lxggD.ttf"
+                font_size: 20
+                color: 0.3, 0.3, 0.3, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                size_hint_y: None
+                height: 40
+
+        # Recommendations list (populated by Python after camera scan)
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                id: rec_container 
+                orientation: 'vertical'
+                spacing: 14
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [60, 5, 60, 10]
+
+                # Recommendations are added dynamically from Python code
+                # (FacialRecommendationScreen.select_recommendation)
+
+        Widget:
+            size_hint_y: 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 20
+            size_hint: None, None
+            size: 600, 60
+            pos_hint: {"center_x": 0.5}
+
+            PinkButton:
+                text: "🔄  Scan Again"
+                on_release: root.rescan()
+
+            BlackButton:
+                text: "< Back"
+                on_release: root.go_back()
+
+        Widget:
+            size_hint_y: None
+            height: 20

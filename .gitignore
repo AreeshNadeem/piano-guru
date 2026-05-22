@@ -1,0 +1,51 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env
+env/
+ENV/
+venv.bak/
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Data, output, generated files, and fonts
+*.wav
+*.mp3
+*.log
+*.ttf
+*.otf
+output*
+
+# User-specific data
+user_data/
+
+# Arduino / embedded build artifacts
+*.hex
+*.elf
+*.bin
+*.eep
+*.lst
+
+# MacOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+# Python distribution / packaging
+build/
+dist/
+*.egg-info/

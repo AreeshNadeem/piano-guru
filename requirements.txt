@@ -1,0 +1,31 @@
+# Piano Guru - Requirements
+# Run: pip install -r requirements.txt
+
+# Core UI
+#kivy==2.3.0
+
+# Serial communication with ESP32
+pyserial
+
+# OpenAI (GPT feedback + melody generation)
+openai
+
+# Data analysis (AnalysisScreen)
+pandas
+
+# Audio processing (hummingToMelody)
+librosa
+sounddevice
+scipy
+numpy
+pydub
+noisereduce
+matplotlib
+
+# ML (hummingToMelody KNN + melodyGeneration KNN)
+scikit-learn
+
+# Emotion detection (emotionRecommendation)
+opencv-python
+deepface
+tf-keras
